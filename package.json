@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "bcryptjs": "^3.0.2",
+    "papaparse": "^5.5.3",
+    "react-csv": "^2.2.2",
+    "react-hot-toast": "^2.5.2",
+    "react-icons": "^5.5.0",
+    "recharts": "^2.15.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.1.1"
+  }
+}

@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:8.0
+    container_name: internship-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: Zeeza_030547
+      MYSQL_DATABASE: internship_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 10
+
+  backend:
+    build: ./internship-backend
+    container_name: internship-backend
+    restart: unless-stopped
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: Zeeza_030547
+      DB_NAME: internship_db
+      DB_PORT: 3306
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./internship-frontend
+    container_name: internship-frontend
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

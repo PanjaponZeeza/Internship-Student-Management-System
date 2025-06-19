@@ -1,0 +1,81 @@
+/* theme.css – กำหนดสไตล์เสริม (เช่น animation, scrollbar, responsive table)
+   สำหรับใช้กับระบบ Dashboard/Internship ของคุณ */
+
+/* === Fade-in animation สำหรับแสดง transition ค่อย ๆ ปรากฏ === */
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+  opacity: 0;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* === จำกัดความสูงข้อความ feedback และทำให้แสดงแค่ 3 บรรทัด พร้อม ... === */
+.feedback-text {
+  max-height: 6rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;             /* จำกัด 3 บรรทัด */
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.4rem;
+  font-size: 1rem;
+  color: #4a4a4a;
+}
+
+/* === Scrollbar styling – แต่ง scrollbar ของ feedback-list ให้บางและโทนเทา === */
+.feedback-list {
+  max-height: 40vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;             /* Firefox */
+  scrollbar-color: #cfcfcf transparent;
+}
+.feedback-list::-webkit-scrollbar {
+  width: 8px;                        /* Chrome/Safari */
+}
+.feedback-list::-webkit-scrollbar-thumb {
+  background-color: #cfcfcf;
+  border-radius: 4px;
+}
+.feedback-list::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* === Responsive table block-style สำหรับ mobile view (จะแสดงเป็นกล่อง ไม่ใช่ตาราง) === */
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  tr {
+    margin-bottom: 1.5rem;
+    border: 1px solid #e0d6c3;
+    border-radius: 6px;
+    padding: 10px;
+  }
+  td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+  td::before {
+    content: attr(data-label);        /* แสดงชื่อคอลัมน์ซ้ายของแต่ละ td */
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+}
